@@ -71,6 +71,7 @@ export const styles = StyleSheet.create({
   todosContainer: {
     marginTop: 10,
   },
+ 
   doneTodo: {
     textDecorationLine: "line-through",
   },
