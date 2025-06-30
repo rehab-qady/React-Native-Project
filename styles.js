@@ -3,8 +3,10 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingVertical: 20,
     backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center",
     paddingBottom: 20,
   },
   input: {
@@ -18,10 +20,10 @@ export const styles = StyleSheet.create({
   },
   submitBtn: {
     width: "50%",
-    backgroundColor: "purple",
+    backgroundColor: "#000",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
   },
   text: {
@@ -69,9 +71,20 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
   todosContainer: {
-    marginTop: 10,
+    width: "90%",
+    marginTop: 20,
   },
- 
+  todoItem: {
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    width: "100%",
+    marginVertical: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
   doneTodo: {
     textDecorationLine: "line-through",
   },

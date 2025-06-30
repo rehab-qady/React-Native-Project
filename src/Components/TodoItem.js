@@ -1,27 +1,45 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Feather from '@expo/vector-icons/Feather';
-const TodoItem = ({todo,deleteTodo}) => {
+import { View, Text, TouchableOpacity } from "react-native";
+import { styles } from "../../styles";
+import Feather from "@expo/vector-icons/Feather";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
+import { PATHS } from "../routes/Router";
+import { useDispatch } from "react-redux";
+import { markAsCompleted, removeTodo } from "../Redux/slices/todos.slice";
 
-    
+const TodoItem = ({ todo }) => {
+  const { navigate } = useNavigation();
+  const dispatch = useDispatch();
+
   return (
-   <View style={{ padding:20,
-       borderRadius:10,
-       borderWidth:1,
-       borderColor:'#ccc',
-       width:'100%',
-       marginVertical:5,
-       flex:1,
-       flexDirection:'row',
-       justifyContent:'space-between',
-       alignItems:'center',
-       }}>
+    <TouchableOpacity style={styles.todoItem} activeOpacity={0.7}>
+      <Text
+        onPress={() => navigate(PATHS.DETAILS, { todo })}
+        style={{
+          fontSize: 20,
+          fontWeight: "500",
+          textDecorationLine: todo.completed ? "line-through" : "none",
+        }}
+      >
+        {todo.title}
+      </Text>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+        <Feather
+          name="trash"
+          size={20}
+          color="red"
+          onPress={() => dispatch(removeTodo(todo.id))}
+        />
+        
+        <AntDesign
+          name={todo.completed ? "checkcircle" : "checkcircleo"}
+          size={20}
+          color="green"
+          onPress={() => dispatch(markAsCompleted(todo.id))}
+        />
+      </View>
+    </TouchableOpacity>
+  );
+};
 
-   
-           <Text style={{fontSize:20, fontWeight:'500'}}>{todo.title}</Text>
-           <Feather name="trash" size={20} color="red" onPress={()=>deleteTodo(todo.id)}/>
-   </View>
-  )
-}
-
-export default TodoItem
+export default TodoItem;
